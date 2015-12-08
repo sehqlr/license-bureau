@@ -1,7 +1,13 @@
-this:
-  name: "License Bureau"
-  url: "github.com/sehqlr/license-bureau.git"
+License Bureau:
+  url: "github.com/sehqlr/license-bureau"
   license: 
     name: "Apache 2.0"
     local: "LICENSE"
     web: "http://www.apache.org/licenses/LICENSE-2.0"
+
+golang:
+  url: "github.com/golang/go"
+  license:
+    name: "Go license"
+    local: "LICENSE"
+    web: "http://raw.githubusercontent.com/golang/go/master/LICENSE"
