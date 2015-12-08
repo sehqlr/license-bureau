@@ -1,0 +1,7 @@
+this:
+  name: "License Bureau"
+  url: "github.com/sehqlr/license-bureau.git"
+  license: 
+    name: "Apache 2.0"
+    local: "LICENSE"
+    web: "http://www.apache.org/licenses/LICENSE-2.0"
