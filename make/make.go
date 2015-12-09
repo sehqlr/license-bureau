@@ -1,48 +1,39 @@
 package main
 
 import (
-	"bytes"
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 
-	"gopkg.in/yaml.v2"
-
-	"license-bureau/bureau"
+	"github.com/sehqlr/license-bureau/bureau"
 )
 
-type SoftwareLicense struct {
-	Local string
-	Name  string
-	Web   string
-}
-
-type Component struct {
-	License SoftwareLicense
-	URL     string
-}
-
 func main() {
-	filepath := os.Args[1]
+	filepath := "license.yml"
 
 	data, err := ioutil.ReadFile(filepath)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Printf("We didn't find %s in this directory.", filepath)
 	} else {
 		fmt.Printf("Loaded: %s\n", filepath)
 	}
 
 	config := bureau.ParseConfig(data)
 
-	var colophon bytes.Buffer
+	f, err := os.Create("BUREAU.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	colophon := bufio.NewWriter(f)
 	var licenseList []string
 
 	for name, component := range config {
 		licenseList = append(licenseList, component.License.Local)
 
-		colophon.Write([]byte("---\n"))
 		colophon.Write([]byte("Component: " + name + "\n"))
 		colophon.Write([]byte("Repo URL: " + component.URL + "\n"))
 		colophon.Write([]byte("License: " + component.License.Name + "\n"))
@@ -57,8 +48,8 @@ func main() {
 		body, err := ioutil.ReadAll(resp.Body)
 		colophon.Write([]byte("FULL TEXT OF LICENSE:\n"))
 		colophon.Write(body)
-		colophon.Write([]byte("\n...\n"))
+		colophon.Write([]byte("\n"))
 	}
 
-	fmt.Print(colophon.String())
+	colophon.Flush()
 }
