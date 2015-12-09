@@ -9,6 +9,8 @@ import (
 	"os"
 
 	"gopkg.in/yaml.v2"
+
+	"license-bureau/bureau"
 )
 
 type SoftwareLicense struct {
@@ -32,12 +34,7 @@ func main() {
 		fmt.Printf("Loaded: %s\n", filepath)
 	}
 
-	config := map[string]Component{}
-
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		log.Fatal(err)
-	}
+	config := bureau.ParseConfig(data)
 
 	var colophon bytes.Buffer
 	var licenseList []string
