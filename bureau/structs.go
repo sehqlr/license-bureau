@@ -1,12 +1,32 @@
 package bureau
 
+import (
+	"io/ioutil"
+	"log"
+
+	"net/http"
+)
+
 type SoftwareLicense struct {
-	Local string
-	Name  string
-	Web   string
+	Name, Local, Web string
 }
 
 type Component struct {
-	License SoftwareLicense
-	URL     string
+	License   SoftwareLicense
+	Name, URL string
+}
+
+func (license SoftwareLicense) GetFullText() []byte {
+	resp, err := http.Get(license.Web)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return body
 }
