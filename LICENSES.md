@@ -1,9 +1,9 @@
 
 ## Components
 #### License Bureau
-Project's page is [here](github.com/sehqlr/license-bureau)
+Project's page is [here](https://github.com/sehqlr/license-bureau)
 It is licensed under the terms of Apache 2.0
-The project's copy of the license is in the [LICENSE](github.com/sehqlr/license-bureau/LICENSE) file.
+The project's copy of the license is in the [LICENSE](https://github.com/sehqlr/license-bureau/LICENSE) file.
 The full text of the license can be found [below](#Apache 2.0)
 
 ## Components

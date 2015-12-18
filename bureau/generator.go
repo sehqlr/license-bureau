@@ -37,8 +37,7 @@ func GenerateMarkdown(config map[string]Component, outfile string) *bufio.Writer
 
 	markdown := bufio.NewWriter(out)
 	c_tmpl := template.Must(template.New("component_template").Parse(component_template))
-	l_tmpl := template.Must(template.New("license_template").Parse(license_template))
-	var licenseProjectList = map[string][]string{}
+	//l_tmpl := template.Must(template.New("license_template").Parse(license_template))
 
 	for name, component := range config {
 		component.Name = name
@@ -46,8 +45,6 @@ func GenerateMarkdown(config map[string]Component, outfile string) *bufio.Writer
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		licenses[component.License.Name] = append(license[component.License.Name], component.Name)
 	}
 
 	return markdown

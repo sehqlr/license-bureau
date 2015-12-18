@@ -1,5 +1,5 @@
 License Bureau:
-  url: "github.com/sehqlr/license-bureau"
+  url: "https://github.com/sehqlr/license-bureau"
   license: 
     name: "Apache 2.0"
     local: "LICENSE"
